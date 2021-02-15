@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Map</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;800&family=Roboto&display=swap" rel="stylesheet">
+	<!-- Стили для календаря -->
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+</head>
+	<body>	
+		<div class="canvas_container">
+			<div class="canvas"></div>
+				<div class="bg-sharebuttons">
+					<div class="canvas_text">SHARE</div>
+					<img src="static/css/img/exit.png" alt="back" class="back" onclick="canvas_back()">
+					<div class="ya-share2" data-curtain data-size="l" data-shape="round" data-lang="en" data-services="vkontakte,facebook,telegram,twitter,reddit">	
+				</div>
+			</div>
+		</div>
+		<header class="header">	
+			<div class="container_header">
+				<div class="header_inner">
+					<div class="logo_div">
+						<div class="logo" id='logo'></div>
+						<img src="static/css/img/vector_logo.png" class="img_logo">
+						<div class="logo_div_text">
+							<div class="logo_up">MAP STATISTICS</div>
+							<div class="logo_down">gradient vizualization</div>
+						</div>
+					</div>
+					<nav class="nav">
+						<a href="/home" class="nav_link">home</a>
+						<a href="/about_us" class="nav_link">about us</a>
+						<a href="#" class="nav_link">news</a>
+						<a href="#" class="nav_link">contacts</a>
+					</nav>
+					<div class="language_con">
+						<img src="static/css/img/translate.png" class="translate_icon">
+					</div>
+
+				</div>
+			</div>
+		</header>
+		<div class="intro">
+			<div class="container_intro" id="container_intro">
+				<div class="intro_inner">
+					<div class="categories">
+						<div class="categories_text">
+								CLASSIFICATION
+						</div>
+						<div class="search_inner">
+							<input type="text" class="search_input" id="search_input" placeholder="Enter keywords for searching" onkeyup="search_for_key()">
+							<div class="search_circle">
+									<img src="static/css/img/input.png" alt="what are u looking at?" style="margin: 6px;">
+							</div>
+						</div>	
+						<hr class="from_it_unfolds_line">
+						<div class="bg_for_search_inner_container" id="bg_for_search_inner_container">
+							<div class="search_inner_container" id="search_inner_container"></div>
+						</div>
+						<div class="categories_inner" id="d">
+							<div class="categories_inner_inner">
+								<!-- Категория "Trending" -->
+								<!-- <div>
+									<div class="category_bg" onclick="menu(event.target)">
+										<div class="triangle_less" style="margin-right: 7px;"></div>
+										<div class="category_text_less" style="width: 70px;">Trending</div>
+										<img src="static/css/img/trending.png" class="trending_logo">
+									</div>
+									<div class="category_main">
+										<div class="letters_for_search">
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">a</a>
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">b</a>
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">c</a>
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">d</a>
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">e</a>
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">f</a>
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">g</a>
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">h</a>
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">i</a>
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">l</a>
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">m</a>
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">n</a>
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">o</a>
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">p</a>
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">r</a>
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">s</a>
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">t</a>
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">u</a>
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">v</a>
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">w</a>
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">y</a>
+										</div>
+										<hr class="under_the_letters_line">
+										<div class="select_tab" id="select_tab_trending" data-id="covid"></div>
+									</div>
+								</div>	 -->
+								<div>
+									<div class="category_bg" onclick="menu(event.target)">
+										<div class="triangle_less" style="margin-right: 7px;"></div>
+										<div class="category_text_less" style="width: 70px;">Covid-19</div>
+										<img src="static/css/img/trending.png" class="trending_logo">
+									</div>
+									<div class="category_main">
+										<div class="letters_for_search">
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">a</a>
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">b</a>
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">c</a>
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">d</a>
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">e</a>
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">f</a>
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">g</a>
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">h</a>
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">i</a>
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">l</a>
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">m</a>
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">n</a>
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">o</a>
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">p</a>
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">r</a>
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">s</a>
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">t</a>
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">u</a>
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">v</a>
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">w</a>
+											<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">y</a>
+										</div>
+										<hr class="under_the_letters_line">
+										<div class="select_tab" id="select_tab_covid"></div>
+									</div>
+								</div>	
+							</div>
+						</div>
+					</div>
+					<div class="map">
+						<div class="map_inner">
+							<div class="title">
+								<div class="title_category">Category</div>
+								<div class="title_region">All World</div>
+							</div>
+							<input type="text" id="datepicker" class='datepicker' placeholder="Select date" onchange='datepicker_value()'>
+							<div class="buttons_container" id='buttons_container'>
+								<img src="static/css/img/minus.png" class="zoom-button" data-zoom="out" id="zoom_minus">
+								<div class="zoom_info">
+									<div class="zoom_info_text" id="zoom-info"></div>		
+								</div>					
+								<img src="static/css/img/plus.png" class="zoom-button" data-zoom="in" id="zoom_plus">
+								<img src="static/css/img/reset.png" class="zoom-button" id="zoom_reset" data-zoom="reset">
+							</div>
+							<div class="loader" id="loader"></div>
+							<!-- <div class="sk-circle" id='sk-circle'>
+							  <div class="sk-circle1 sk-child"></div>
+							  <div class="sk-circle2 sk-child"></div>
+							  <div class="sk-circle3 sk-child"></div>
+							  <div class="sk-circle4 sk-child"></div>
+							  <div class="sk-circle5 sk-child"></div>
+							  <div class="sk-circle6 sk-child"></div>
+							  <div class="sk-circle7 sk-child"></div>
+							  <div class="sk-circle8 sk-child"></div>
+							</div> -->
+							<div id="map_container" onmouseover='progress_bar_switch(event.target)'></div>
+
+							<div class="slider_container_pseudo" id='slider_container'>
+								<div class="num_over_slider" id="num_over_slider"></div>
+								<div class="slider_inner">
+								  	<input type="range" min="1960" max="" value="" class="slider" id="slider">
+								</div>	
+								<div class="min_max_nums">
+									<div class="min_num">1960</div>
+									<div class="max_num"></div>	
+								</div>				
+							</div>
+							
+							<div class="container_buttons_for_map">
+								<div class="no_data_container">
+									<div class="no_data_text">No data 0%</div>
+									<div class="no_data"></div>
+								</div>
+								<div class="data_container">
+									<div class="data_text_container">
+										<div class="data_text_start">0.5%</div>
+										<div class="data_text_end">100.000.000%</div>
+									</div>
+									<div class="data" id='data'></div>
+									<div class="progress">
+									  	<div class="progress_bar"></div>
+									</div>
+								</div>
+								<div class="change_colour_container" id='change_colour_container' onclick="random_gradient_button()"> 
+									<div class="change_colour_border"></div>
+									<div class="change_colour_bg" id='change_colour_bg'></div>
+									<img src="static/css/img/change_colour.png" class="change_colour">
+								</div>
+								<div class="random_category" id="random_category" onclick="random_category()">
+									<div class="random_category_text">random category</div>
+								</div>
+
+								<img src="static/css/img/dw.png" class="dw">
+								<img src="static/css/img/share.png" class="share" onclick="share()">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="container_footer">
+				<div class="text1_footer">© 2020 All Rights Reserved.</div>
+				<div class="text2_footer">Show Privacy Policy</div>
+			</div>
+		</div>
+    	<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/datamaps/0.5.8/datamaps.all.js"></script>
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		<!-- Скрипт для кнопок "поделиться" -->
+		<script src="https://yastatic.net/share2/share.js"></script> 
+		<!--  Скрипты для календаря  -->
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	    <script type="text/javascript">
+	    	//var title_of_type_arr = {'population': ['Country', 'Population'], 'death': ['Country', 'Death rate/1,000 persons']}
+	    	var region_codes = {"015": 'Northern Africa', "011": 'Western Africa', "017": 'Middle Africa', "014": 'Eastern Africa', "018": 'Southern Africa', "154": 'Northern Europe', "155": 'Western Europe', "151": 'Eastern Europe', "039": 'Southern Europe', "021": ' Northern America', "029": 'Caribbean', "013": 'Central America', "005": 'South America', "143": 'Central Asia', "030": 'Eastern Asia', "034": 'Southern Asia', "035": 'South-Eastern Asia', "145": 'Western Asia', "053": 'Australia and New Zealand', "054": 'Melanesia', "057": 'Micronesia', "061": 'Polynesia'}
+	    	// var region_with_countries = [
+	    	// // 002 - Africa
+	    	// 	['015', 'Algeria', 'Egypt', 'Western Sahara', 'Libya', 'Morocco', 'Sudan', 'South Sudan', 'Tunisia'],
+	    	//  	['011', 'Burkina Faso', 'Benin', "Côte d'Ivoire", 'Cabo Verde', 'Ghana', 'Gambia', 'Guinea', 'Guinea-Bissau', 'Mali', 'Mauritania', 'Niger', 'Nigeria',
+	    	//  	 'Saint Helena, Ascension and Tristan da Cunha', 'Sierra Leone', 'Senegal', 'Togo'],
+	    	//  	['017', 'Angola', 'CD', 'Zaire', 'Central African Republic', 'Congo', 'Cameroon', 'Gabon', 'Equatorial Guinea', 'Sao Tome and Principe', 'Chad'],
+	    	//  	['014', 'Burundi', 'Djibouti', 'Eritrea', 'Ethiopia', 'Kenya', 'Comoros', 'Madagascar', 'Mauritius', 'Malawi', 'Mozambique', 'Réunion', 'Rwanda', 'Seychelles', 'Somalia', 'TZ', 'Uganda', 
+	    	//  	 'Mayotte', 'Zambia', 'Zimbabwe'],
+	    	//  	['018', 'Botswana', 'Lesotho', 'Namibia', 'Eswatini', 'South Africa'],
+	    	// //  150 - Europe
+	    	// 	['154', 'Guernsey', 'Jersey', 'Åland Islands', 'Denmark', 'Estonia', 'Findland', 'Faroe Islands', 'United Kingdom of Great Britain and Northern Ireland', 'Ireland', 'Isle of Man', 'Iceland', 'Lithuania', 'Latvia', 'Norway', 'Sweden', 'Svalbard and Jan Mayen'],
+	    	// 	['155', 'Austria', 'Belgium', 'Switzerland', 'Germany', 'France', 'Liechtenstein', 'Luxembourg', 'Monaco', 'Netherlands'],
+	    	// 	['151', 'Bulgaria', 'Belarus', 'Czechia', 'Hungary', 'Moldova, Republic of', 'Poland', 'Romania', 'Russian Federation', 'Slovakia', 'Ukraine'],
+	    	// 	['039', 'Andorra', 'Albania', 'Bosnia and Herzegovina', 'Spain', 'Gibraltar', 'Greece', 'Croatia', 'Italy', 'Montenegro', 'North Macedonia', 'Malta', 'Serbia', 'Portugal', 'Slovenia', 'San Marino', 'Holy See', 'Yugoslavia'],
+	    	// //	019 - Americas
+	    	// 	['021', 'Bermuda', 'Canada', 'Greenland', 'Saint Pierre and Miquelon', 'United States'],
+	    	// 	['029', 'Antigua and Barbuda', 'Anguilla', 'Aruba', 'Barbados', 'Saint Barthélemy', 'Bahamas', 'Cuba', 'Dominica', 'Dominican Republic', 'Grenada', 'Guadeloupe', 'Haiti', 'Jamaica', 'Saint Kitts and Nevis', 'Cayman Islands', 'Saint Lucia', 'Saint Martin (French part)', 'Martinique', 'Montserrat', 'Puerto Rico', 'Turks and Caicos Islands', 'Trinidad and Tobago', 'Saint Vincent and the Grenadines', 'Virgin Islands (British)', 'United States Minor Outlying Islands'],
+	    	// 	['013', 'Belize', 'Costa Rica', 'Guatemala', 'Honduras', 'Mexico', 'Nicaragua', 'Panama', 'El Salvador'],
+	    	// 	['005', 'Argentina', 'Bolivia (Plurinational State of)', 'Brazil', 'Chile', 'Colombia', 'Ecuador', 'Falkland Islands (Malvinas)', 'French Guiana', 'Guyana', 'Peru', 'Paraguay', 'Suriname', 'Uruguay', 'Venezuela (Bolivarian Republic of)'],
+	    	// // 142 - Asia
+	    	// 	['143', 'Turkmenistan', 'Tajikistan', 'Kyrgyzstan', 'Kazakhstan', 'Uzbekistan'],
+	    	// 	['030', 'China', 'Hong Kong', 'Japan', "Korea (Democratic People's Republic of)", 'Korea, Republic of', 'Mongolia', 'Macao', 'Taiwan, Province of China'],
+	    	// 	['034', 'Afghanistan', 'Bangladesh', 'Bhutan', 'India', 'Iran (Islamic Republic of)', 'Sri Lanka', 'Maldives', 'Nepal', 'Pakistan'],
+	    	// 	['035', 'Brunei Darussalam', 'Indonesia', 'Cambodia', "Lao People's Democratic Republic", 'Myanmar', 'Burma', 'Malaysia', 'Philippines', 'Singapore', 'Thailand', 'Timor-Leste', 'East Timor', 'Viet Nam'],
+	    	// 	['145', "United Arab Emirates", "Armenia", "Azerbaijan", "Bahrain", "Cyprus", "Georgia", "Israel", "Iraq", "Jordan", "Kuwait", "Lebanon", "Oman", "Palestine, State of", "Qatar", "Saudi Arabia", "Syrian Arab Republic", "Turkey", "Yemen"],
+	    	// // 009 - Oceania
+	    	// 	['053', 'Australia', 'Norfolk Island', 'New Zealand'],
+	    	// 	['054', 'Fiji', 'New Caledonia', 'Papua New Guinea', 'Solomon Islands', 'Vanuatu'],
+	    	// 	['057', 'Micronesia (Federated States of)', 'Guam', 'Kiribati', 'Marshall Islands', 'Northern Mariana Islands', 'Nauru', 'Palau'],
+	    	// 	['061', 'American Samoa', 'Cook Islands', 'Niue', 'French Polynesia', 'Pitcairn', 'Tokelau', 'Tonga', 'Tuvalu', 'Wallis and Futuna', 'Samoa']
+	    	// ];
+	    	var random_gradient_arr = [['#1E27FF', '#FF35EB'], ['#4DFFDF', '#FF1CBF'], ['#11C6FF', '#FFF500'], ['#FF1E1E', '#0060F1'], ['#54FF18', '#2E0CFF'], ['#FF1E6F', '#EFFF35'], ['#FF1E1E', '#D7FF35'], ['#88C606', '#FFD028', '#FF35EB']]
+	    	var not_country = ['1A', 'S3', 'B8', 'V2', 'Z4', '4E', 'T4', 'XC', 'Z7', '7E', 'T7', 'EU', 'F1', 'XE', 'XD', 'XF', 'ZT', 'XH', 'XI', 'XG', 'V3', 'ZJ', 'XJ', 'T2', 'XL', 'XO', 'XM', 'XN', 'ZQ', 'XQ', 'T3', 'XP', 'XU', 'XY', 'OE', 'S4', 'S2', 'V4', 'V1', 'S1', '8S', 'T5', 'ZG', 'ZF', 'T6', 'XT', '1W'] // 1W - WORLD
+
+	    	var covid_categories = ['Cases', 'Today Cases', 'Deaths', 'Today Deaths', 'Recovered', 'Today Recovered', 'Active', 'Critical', 'Cases Per One Million', 'Deaths Per One Million', 'Tests', 'Tests Per One Million', 'One Case Per People', 'One Death Per People', 'One Test Per People', 'Active Per One Million', 'Recovered Per One Million', 'Critical Per One Million']
+
+	    	let not_displayed_countries = ['ABW', 'AIA', 'ALA', 'ASM', 'ATA', 'ATF', 'ATG', 'AND', 'BES', 'BHR', 'BLM', 'BRB', 'BVT', 'CCK', 'COK', 'COM', 'CPV', 'CUW', 'CXR', 'CYM', 'DMA', 'FRO', 'FSM', 'GGY', 'GIB', 'GLP', 'GRD', 'GUM', 'HKG', 'HMD', 'IMN', 'IOT', 'JEY', 'KIR', 'KNA', 'LCA', 'LIE', 'MAC', 'MAF', 'MDV', 'MHL', 'MLT', 'MNP', 'MSR', 'MTQ', 'MUS', 'MYT', 'NFK', 'NIU', 'NRU', 'PCN', 'PLW', 'PSE', 'PYF', 'REU', 'SGP', 'SGS', 'SJM', 'SHN', 'SPM', 'STP', 'SXM', 'SYC', 'TCA', 'TKL', 'TON', 'TUV', 'UMI', 'VAT', 'VCT', 'VGB', 'VIR', 'WLF', 'WSM', 'SMR']// массив стран, которые не отображаюся на карте в силу их масштаба
+	    	var covid_data;
+	    	var historical_covid_data;
+	    	var JHUCSSE_data;
+	    	var JHUCSSE_data_dict = {};
+	    	var dict_country_iso3 = {};
+	    	var dict_country_iso3_history = {};
+	    	var dict_country_iso3_history_previous = {};
+
+	    	//Создание МЕНЮ:
+	    	var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'l', 'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'v', 'w', 'y']
+	    	var accordion = document.getElementsByClassName('accordion');
+	    	var our_parent = document.getElementsByClassName('categories_inner_inner');
+	    	var num_over_slider = document.getElementById("num_over_slider");
+	    	var slider = document.getElementById("slider");
+	    	var max_num = document.getElementsByClassName('max_num')[0];
+	    	var alldata = {{ alldata|safe }};
+	    	var category = {{ category|safe }};
+	    	var length_scroll = 100;
+	    	var data_alphabet_all = []
+	    	var arr_for_data = []
+	    	var indicator = ''
+	    	var dataset = []
+	    	var id = ""
+	    	var slider_ready = 0;
+	    	var date = new Date();
+	    	var year = date.getFullYear();
+	    	var map = document.getElementById('map_container');
+	    	var load_circle = document.getElementById('loader');
+	    	var arr_for_data_copy;
+	    	var datepicker = document.getElementById('datepicker')
+	    	var slider_container = document.getElementById('slider_container')
+	    	var buttons_container = document.getElementById('buttons_container')
+	    	var container_intro = document.getElementById('container_intro')
+	    	container_intro.style.height = '100%';
+
+	    	num_over_slider.innerHTML = year
+	    	slider.max = year
+	    	slider.value = year
+	    	max_num.innerHTML = year
+
+	    	// Генерация рандомного числа.
+	    	function getRandomInt(max) {
+				return Math.floor(Math.random() * Math.floor(max));
+			}
+			var random_gradient = getRandomInt(random_gradient_arr.length)
+			console.log(random_gradient);
+
+	    	GET_covid()
+	    	create_menu()
+	    	set_random_gradient_arr()
+
+	    	// Функция закрытия кнопок "поделиться"
+	    	function canvas_back(){
+	    		let canvas_container = document.getElementsByClassName('canvas_container')[0]
+	    		canvas_container.style.display = "none"
+	    	}
+	    	// Поделиться
+	    	function share(){
+				let canvas_container = document.getElementsByClassName('canvas_container')[0]
+				let canvas = document.getElementsByClassName('canvas')[0]
+				canvas_container.style.display = "block"
+				canvas.style.opacity = "80%"
+	    	}
+			// Делается рандомный градиент при загрузке страницы, ну а так это просто функция, которая генерирует и ставит рандомный градиент
+	    	function set_random_gradient_arr(){
+	    		let elems = ['logo', 'change_colour_bg', 'random_category', 'data']
+
+	 
+				// Если кол-во цветов в массиве == 3, то есть градиент состоит из трех цветов, то:
+				for (let elem of elems) {
+					if(random_gradient_arr[random_gradient].length == 3){
+						$('#'+elem).css({
+					   	 background: 'linear-gradient(90deg, '+random_gradient_arr[random_gradient][0]+', '+random_gradient_arr[random_gradient][1]+', '+random_gradient_arr[random_gradient][2]+')'
+						});
+					}else{
+						$('#'+elem).css({
+					   		background: 'linear-gradient(90deg, '+random_gradient_arr[random_gradient][0]+', '+random_gradient_arr[random_gradient][1]+')'
+						});
+					}
+				}
+				
+	    	}
+
+	    	function create_menu(){	
+	    		let select_tab_covid = document.getElementById('select_tab_covid')
+	    		// Создание категории Ковида
+	    		for (let i = 0; i < covid_categories.length; i++) {
+	    			option_tab = document.createElement('div');
+	    			option_tab.className = "option_tab"
+	    			option_tab.id = 'covid'
+	    			option_tab.value = ""
+	    			option_tab.innerHTML = covid_categories[i]
+	    			
+	    			option_tab.addEventListener('click', click_data_covid)
+	    			select_tab_covid.appendChild(option_tab);
+	    			data_alphabet_all.push([covid_categories[i], 'covid'])	// Добавляем в массив поиска данные по ковиду
+
+	    		}
+	    		// Конец создания категории Ковида
+
+		    	for (let i = 1; i < Object.keys(category).length+1; i++) { // длина ключей словаря "category"
+		    		data_alphabet = []
+		    		length_scroll += 49;
+		    		just_div = document.createElement('div');
+		    		our_parent[0].appendChild(just_div);
+
+		    		category_bg = document.createElement('div');
+		    		category_bg.className = 'category_bg';
+		    		category_bg.addEventListener('click', menu)
+		    		just_div.appendChild(category_bg);
+
+		    		if(category[Object.keys(category)[i-1]].length < 37){
+						triangle = document.createElement('div');
+		    			triangle.className = 'triangle_less';
+		    			category_bg.appendChild(triangle);
+		    		}else{
+		    			div_triangle = document.createElement('div');
+		    			div_triangle.className = 'div_triangle'
+		    			category_bg.appendChild(div_triangle)
+
+		    			triangle = document.createElement('div');
+		    			triangle.className = 'triangle_much';
+		    			div_triangle.appendChild(triangle);
+		    		}
+					
+
+		    		category_text = document.createElement('div');
+		    		
+		    		category_text.innerHTML = category[Object.keys(category)[i-1]]
+					if(category[Object.keys(category)[i-1]].length < 37){			// если длина строки меньше 45, то 
+						category_text.className = 'category_text_less';
+					}else{
+						category_text.className = 'category_text_much';
+					}
+		    		
+		    		
+		    		category_bg.appendChild(category_text);
+
+					category_main = document.createElement('div');
+		    		category_main.className = 'category_main';
+		    		just_div.appendChild(category_main);
+
+		    		letters_for_search = document.createElement('div');
+		    		letters_for_search.className = 'letters_for_search';
+		    		category_main.appendChild(letters_for_search);
+
+		    		for (let letter = 0; letter < letters.length; letter++) {
+		    			search_for_letter = document.createElement('a');
+		    			search_for_letter.className = 'search_for_letter'
+		    			search_for_letter.innerHTML = letters[letter]
+		    			search_for_letter.addEventListener('click', topscroll)
+		    			letters_for_search.appendChild(search_for_letter);
+		    			
+		    		}
+
+		    		under_the_letters_line = document.createElement('hr');
+		    		under_the_letters_line.className = 'under_the_letters_line';
+		    		category_main.appendChild(under_the_letters_line);
+
+		    		// Создание select
+		    		select_tab = document.createElement('div');
+		    		select_tab.className = "select_tab"
+		    		select_tab.id = "select_tab"
+		    		select_tab.size = 3
+		    		category_main.appendChild(select_tab);
+		    		
+		    		for (var op = 0; op < alldata[Object.keys(category)[i-1]].length; op++) {
+		    			prearr = [alldata[Object.keys(category)[i-1]][op][1], alldata[Object.keys(category)[i-1]][op][0]]
+		    			if(prearr[0][10] == ","){
+		    				str_to_fix = prearr[0].split('')
+		    				str_to_fix.splice(10, 1);
+		    				prearr.splice(0, 1);
+		    				prearr.unshift(str_to_fix.join(''))
+		    			}
+		    			data_alphabet.push(prearr)
+		    			data_alphabet_all.push(prearr)
+		    		}
+		    		data_alphabet.sort()
+
+		    		for (var alphabet = 0; alphabet < data_alphabet.length; alphabet++) {
+		    			option_tab = document.createElement('div');
+		    			option_tab.className = "option_tab"
+		    			option_tab.id = data_alphabet[alphabet][1]
+		    			option_tab.value = ""
+		    			option_tab.innerHTML = data_alphabet[alphabet][0]
+		    			
+		    			option_tab.addEventListener('click', click_data)
+		    			select_tab.appendChild(option_tab);
+		    		}
+		    	}
+		    }
+
+		    // Получаем данные ковид из апи https://disease.sh/docs/#/
+		    function GET_covid(){
+		    	let wrong_name = [['UK', 'United Kingdom'], ['Macedonia', 'North Macedonia'], ['Taiwan', 'Taiwan*'], ["Lao People's Democratic Republic", 'Laos'], ['Syrian Arab Republic', 'Syria'], ['S. Korea', 'Korea, South'], ['Libyan Arab Jamahiriya', 'Libya'], ['Congo', 'Congo (Brazzaville)'], ['DRC', 'Congo (Kinshasa)'], ["Côte d'Ivoire", "Cote d'Ivoire"], ['UAE', 'United Arab Emirates'], ['Bosnia and Herzegovina', 'Bosnia and Herzegovina'], ['Bosnia', 'Bosnia and Herzegovina'], ['Swaziland', 'Eswatini'], ['Myanmar', 'Burma']]
+		    	let wrong_name_previous = [["Cote d'Ivoire", "Côte d'Ivoire"], ['Libya', 'Libyan Arab Jamahiriya'], ['United Arab Emirates', 'UAE'], ['Democratic republic of congo', 'DRC'], ['Congo (Brazzaville)', 'Congo'], ['Congo (Kinshasa)', 'DRC'] ]
+		    	let value;
+		    	let x = new XMLHttpRequest();
+
+	    		x.open("GET", "https://disease.sh/v3/covid-19/countries");
+	    		x.send();
+	    		x.onload = function() {    	
+					let r = JSON.parse(x.response)
+					covid_data = r
+					for (let i = 0; i < r.length; i++) {
+						if(r[i]['countryInfo']['iso3'] != null){
+							if(r[i]['countryInfo']['iso3'] == 'PSE'){
+								dict_country_iso3['West Bank and Gaza'] = r[i]['countryInfo']['iso3']
+							}else{
+								dict_country_iso3[r[i]['country']] = r[i]['countryInfo']['iso3']
+							}
+							
+						}						
+					}
+					// Копируются данные из массива dict_country_iso3 в массив dict_country_iso3_history
+					for (let key in dict_country_iso3) {
+						dict_country_iso3_history[key] = dict_country_iso3[key]
+					}
+					// Копируются данные из массива dict_country_iso3 в массив dict_country_iso3_history_previous
+					for (let key in dict_country_iso3) {	
+						if(key == "Myanmar"){
+							dict_country_iso3_history_previous['Burma'] = dict_country_iso3[key]
+						}else{
+							dict_country_iso3_history_previous[key] = dict_country_iso3[key]
+						}
+					}
+
+					// 'UK' на 'United Kingdom', заменяем ключи на другие 
+					for (let i = 0; i < wrong_name.length; i++) {
+						value = dict_country_iso3_history[wrong_name[i][0]]
+						delete dict_country_iso3_history[wrong_name[i][0]];
+						dict_country_iso3_history[wrong_name[i][1]] = value
+					}
+
+				}
+
+				let x2 = new XMLHttpRequest();
+
+	    		x2.open("GET", "https://disease.sh/v3/covid-19/historical?lastdays=all");
+	    		x2.send();
+	    		x2.onload = function() {    	
+					let r = JSON.parse(x2.response)
+					historical_covid_data = r			
+				}
+
+				let x3 = new XMLHttpRequest();
+				let iff = 0
+				let arr = []
+				let keys = ['confirmed', 'deaths', 'recovered']
+				let c = 0
+				setTimeout(x3wait, 1000);
+				function x3wait(){
+		    		x3.open("GET", "https://disease.sh/v3/covid-19/jhucsse");
+		    		x3.send();
+		    		x3.onload = function() {    	
+						let r = JSON.parse(x3.response)
+						JHUCSSE_data = r		
+						// Делаем более понятный словарь пример: 'cases': ['RU', 100]
+						for (let key of keys) {
+							arr = []
+							pre_arr = []
+							c = 0
+							for (let i = 0; i < JHUCSSE_data.length; i++) {
+								iff = 0
+								for (let n = 0; n < arr.length; n++) { // Длина словаря (по ключам)
+									// Если страна равна "определенной стране" и провинция равна "определенной провинции", то данные заносятся во временный массив, и в конце уже из него данные переходят в основной массив с [iso3code, value], например: ['NCL', 100].
+									if(JHUCSSE_data[i]['country'] == 'United Kingdom' && JHUCSSE_data[i]['province'] == 'Falkland Islands (Malvinas)'){
+										for (let p = 0; p < pre_arr.length; p++) {
+											if(pre_arr[p][0] == dict_country_iso3_history['Falkland Islands (Malvinas)']){
+												pre_arr.splice(p, 1)
+											}
+										}
+										pre_arr.push([dict_country_iso3_history['Falkland Islands (Malvinas)'], JHUCSSE_data[i]['stats'][key]])
+									}
+									if(JHUCSSE_data[i]['country'] == 'France' && JHUCSSE_data[i]['province'] == 'New Caledonia'){
+										for (let p = 0; p < pre_arr.length; p++) {
+											if(pre_arr[p][0] == dict_country_iso3_history['New Caledonia']){
+												pre_arr.splice(p, 1)
+											}
+										}
+										pre_arr.push([dict_country_iso3_history['New Caledonia'], JHUCSSE_data[i]['stats'][key]])
+									}else if(JHUCSSE_data[i]['country'] == 'France' && JHUCSSE_data[i]['province'] == 'French Guiana'){		// Почему тут else if, а в других местах if - понятия не имею, главное что работает :)
+										for (let p = 0; p < pre_arr.length; p++) {
+											if(pre_arr[p][0] == dict_country_iso3_history['French Guiana']){
+												pre_arr.splice(p, 1)
+											}
+										}
+										pre_arr.push([dict_country_iso3_history['French Guiana'], JHUCSSE_data[i]['stats'][key]])
+									}
+									if(JHUCSSE_data[i]['country'] == 'Denmark' && JHUCSSE_data[i]['province'] == 'Greenland'){
+										for (let p = 0; p < pre_arr.length; p++) {
+											if(pre_arr[p][0] == dict_country_iso3_history['Greenland']){
+												pre_arr.splice(p, 1)
+											}
+										}
+										pre_arr.push([dict_country_iso3_history['Greenland'], JHUCSSE_data[i]['stats'][key]])
+									}
+
+									if(arr[n][0] == dict_country_iso3_history[JHUCSSE_data[i]['country']]){
+										c = arr[n][1]
+										arr.splice(n, 1)
+										c += JHUCSSE_data[i]['stats'][key]
+										iff = 1
+										arr.push([dict_country_iso3_history[JHUCSSE_data[i]['country']], c])
+									}
+								}
+								if(!iff){
+									arr.push([dict_country_iso3_history[JHUCSSE_data[i]['country']], JHUCSSE_data[i]['stats'][key]])
+								}
+							}
+							// Вот тут вот данные переносятся из вспомогательного массива в основной.
+							for (let p of pre_arr) {
+								arr.push(p)
+							}
+
+							// Заносим в наш массив страну США из первого запроса, так как ее почему то нету в третьем запросе (JHUCSSE_data).
+							for (let am = 0; am < covid_data.length; am++) {
+								if(covid_data[am]['country'] == 'USA'){
+									if(key == 'confirmed'){
+										arr.push([covid_data[am]['country'], covid_data[am]['cases']])
+									}else{
+										arr.push([covid_data[am]['country'], covid_data[am][key]])
+									}
+									
+								}							
+							}
+							
+							// Если ключ равен, то он становится равен cases (т.к. в одном из двух запросов 'cases'(случаи заражения) = 'confirmed', а нам требуется 'cases', для обращения по ключу).
+							if(key == 'confirmed'){
+								JHUCSSE_data_dict['cases'] = arr
+							}else{
+								JHUCSSE_data_dict[key] = arr
+							}
+							
+						}
+						console.log('api done covid');
+						//console.log(JHUCSSE_data_dict)
+					}
+				}
+		    }
+	    	
+	    	$('.categories_inner_inner').css('height',length_scroll+'px')
+
+	    	// DATAMAP
+	    	// DATAMAP
+	    	// DATAMAP
+	    	function Zoom(args) {
+			  $.extend(this, {
+			    $buttons:   $(".zoom-button"),
+			    $info:      $("#zoom-info"),
+			    scale:      { max: 50, currentShift: 0 },
+			    $container: args.$container,
+			    datamap:    args.datamap
+			  });
+
+			  this.init();
+			}
+
+			Zoom.prototype.init = function() {
+			  var paths = this.datamap.svg.selectAll("path"),
+			      subunits = this.datamap.svg.selectAll(".datamaps-subunit");
+
+			  // preserve stroke thickness
+			  paths.style("vector-effect", "non-scaling-stroke");
+
+			  // disable click on drag end
+			  subunits.call(
+			    d3.behavior.drag().on("dragend", function() {
+			      d3.event.sourceEvent.stopPropagation();
+			    })
+			  );
+
+			  this.scale.set = this._getScalesArray();
+			  this.d3Zoom = d3.behavior.zoom().scaleExtent([ 1, this.scale.max ]);
+
+			  this._displayPercentage(1);
+			  this.listen();
+			};
+
+			Zoom.prototype.listen = function() {
+			  this.$buttons.off("click").on("click", this._handleClick.bind(this));
+
+			  this.datamap.svg
+			    .call(this.d3Zoom.on("zoom", this._handleScroll.bind(this)))
+			    .on("dblclick.zoom", null); // disable zoom on double-click
+			};
+
+			Zoom.prototype.reset = function() {
+			  this._shift("reset");
+			};
+
+			Zoom.prototype._handleScroll = function() {
+			  var translate = d3.event.translate,
+			      scale = d3.event.scale,
+			      limited = this._bound(translate, scale);
+
+			  this.scrolled = true;
+
+			  this._update(limited.translate, limited.scale);
+			};
+
+			Zoom.prototype._handleClick = function(event) {
+			  var direction = $(event.target).data("zoom");
+
+			  this._shift(direction);
+			};
+
+			Zoom.prototype._shift = function(direction) {
+			  var center = [ this.$container.width() / 2, this.$container.height() / 2 ],
+			      translate = this.d3Zoom.translate(), translate0 = [], l = [],
+			      view = {
+			        x: translate[0],
+			        y: translate[1],
+			        k: this.d3Zoom.scale()
+			      }, bounded;
+
+			  translate0 = [
+			    (center[0] - view.x) / view.k,
+			    (center[1] - view.y) / view.k
+			  ];
+
+				if (direction == "reset") {
+			  	view.k = 1;
+			    this.scrolled = true;
+			  } else {
+			  	view.k = this._getNextScale(direction);
+			  }
+
+			l = [ translate0[0] * view.k + view.x, translate0[1] * view.k + view.y ];
+
+			  view.x += center[0] - l[0];
+			  view.y += center[1] - l[1];
+
+			  bounded = this._bound([ view.x, view.y ], view.k);
+
+			  this._animate(bounded.translate, bounded.scale);
+			};
+
+			Zoom.prototype._bound = function(translate, scale) {
+			  var width = this.$container.width(),
+			      height = this.$container.height();
+
+			  translate[0] = Math.min(
+			    (width / height)  * (scale - 1),
+			    Math.max( width * (1 - scale), translate[0] )
+			  );
+
+			  translate[1] = Math.min(0, Math.max(height * (1 - scale), translate[1]));
+
+			  return { translate: translate, scale: scale };
+			};
+
+			Zoom.prototype._update = function(translate, scale) {
+			  this.d3Zoom
+			    .translate(translate)
+			    .scale(scale);
+
+			  this.datamap.svg.selectAll("g")
+			    .attr("transform", "translate(" + translate + ")scale(" + scale + ")");
+
+			  this._displayPercentage(scale);
+			};
+
+			Zoom.prototype._animate = function(translate, scale) {
+			  var _this = this,
+			      d3Zoom = this.d3Zoom;
+
+			  d3.transition().duration(350).tween("zoom", function() {
+			    var iTranslate = d3.interpolate(d3Zoom.translate(), translate),
+			        iScale = d3.interpolate(d3Zoom.scale(), scale);
+
+					return function(t) {
+			      _this._update(iTranslate(t), iScale(t));
+			    };
+			  });
+			};
+
+			Zoom.prototype._displayPercentage = function(scale) {
+			  var value;
+
+			  value = Math.round(Math.log(scale) / Math.log(this.scale.max) * 100);
+			  this.$info.text(value + "%");
+			};
+
+			Zoom.prototype._getScalesArray = function() {
+			  var array = [],
+			      scaleMaxLog = Math.log(this.scale.max);
+
+			  for (var i = 0; i <= 10; i++) {
+			    array.push(Math.pow(Math.E, 0.1 * i * scaleMaxLog));
+			  }
+
+			  return array;
+			};
+
+			Zoom.prototype._getNextScale = function(direction) {
+			  var scaleSet = this.scale.set,
+			      currentScale = this.d3Zoom.scale(),
+			      lastShift = scaleSet.length - 1,
+			      shift, temp = [];
+
+			  if (this.scrolled) {
+
+			    for (shift = 0; shift <= lastShift; shift++) {
+			      temp.push(Math.abs(scaleSet[shift] - currentScale));
+			    }
+
+			    shift = temp.indexOf(Math.min.apply(null, temp));
+
+			    if (currentScale >= scaleSet[shift] && shift < lastShift) {
+			      shift++;
+			    }
+
+			    if (direction == "out" && shift > 0) {
+			      shift--;
+			    }
+
+			    this.scrolled = false;
+
+			  } else {
+
+			    shift = this.scale.currentShift;
+
+			    if (direction == "out") {
+			      shift > 0 && shift--;
+			    } else {
+			      shift < lastShift && shift++;
+			    }
+			  }
+
+			  this.scale.currentShift = shift;
+
+			  return scaleSet[shift];
+			};
+			// example data from server		
+
+
+			function Datamap() {
+				map.id = 'map_container';		// Изменяем id у карты
+				load_circle.style.display = "none"
+
+				this.$container = $("#map_container");
+				this.instance = new Datamaps({
+				// projection: 'mercator',
+			    fills: { defaultFill: "#707070" },
+			    data: dataset,
+			    geographyConfig: {
+			      borderColor: '#DEDEDE',
+			      borderWidth: '0px',
+			      highlightBorderWidth: 1,
+			      // don't change color on mouse hover
+			      highlightFillColor: function(geo) {
+			        return geo['fillColor'] || '#707070';		// Меняет заливку у страны, у которой нет значения
+			      },
+			      // Меняет цвет границы наведенной страны
+			      highlightBorderColor: '#B7B7B7',
+			      // show desired information in tooltip
+			      popupTemplate: function(geo, data) {
+			        // don't show tooltip if country don't present in dataset
+			        if (!data) { return ; }
+			        // tooltip content
+			        return ['<div class="hoverinfo" style="background-color: #1e1a1a; border: 0px solid !important; box-shadow: 0 0 0 0; opacity: 0.9; color: #e7def6 !important; text-transform: uppercase; height: 33px; font-family: "montserrat", sans-serif; 	font-size: 12px; font-weight: 500; line-height: 1.5;">',
+			                '<div style="padding-top: 2px; padding-left: 6px; padding-right: 6px"><span>', geo.properties.name, '</span>',
+			                '<br><span style="margin-top: 2px; display: block;">', data.numberOfThings.toLocaleString(), '</span></div>',
+			                '</div>'].join('');
+			      	}
+			  	},
+			    element: this.$container.get(0),
+			    done: this._handleMapReady.bind(this)
+				});
+
+				
+			}
+
+			Datamap.prototype._handleMapReady = function(datamap) {
+				this.zoom = new Zoom({
+			  	$container: this.$container,
+			  	datamap: datamap
+			  });
+			}
+
+			new Datamap();
+			// DATAMAP END
+			// DATAMAP END
+			// DATAMAP END
+
+			// Смена позиции числа над слайдером и загрузка данных по конкретному году
+			slider.oninput = function(){
+				let data_text_start = document.getElementsByClassName('data_text_start')[0]
+	    		let data_text_end = document.getElementsByClassName('data_text_end')[0]
+	    		min_progress = 10000000000000;
+	    		max_progress = 0;
+				slider_ready = 1
+				num_over_slider.innerHTML = this.value;
+				arr_for_data = dict[this.value]
+				// console.log('arr_for_data');
+				// console.log(arr_for_data);
+				dataset = {}
+
+  				num_over_slider.style.left = (100 / (this.max - this.min + 1) - ((100 / (this.max - this.min + 1) * (this.max - this.min) - 97.5) / (this.max - this.min))) * ((this.max - this.min) - (this.max - this.value))  + "%";		// Если захочешь разобраться то тоби пызда, а вообще тут все довольно просто, надо просто вникнуть, если что 97.5 это проценты у left  (при 97.5% наше число над прогрес баром принимает крайнее правое значение)
+				
+				for (let i = 0; i < arr_for_data.length; i++) {		// Если страна из первого массива есть в списке не отображающихся стран, то она удаляется из 1-го массива
+					for (let ndc of not_displayed_countries) {
+						if(arr_for_data[i][0] == ndc){
+							arr_for_data.splice(i, 1);
+						}
+					}
+				}
+
+  		
+  				for(let elem_arr of arr_for_data) {
+			  		if(elem_arr[1] > max_progress){
+			  			max_progress = elem_arr[1]
+			  			console.log(max_progress);
+			  		}
+			  		if(elem_arr[1] < min_progress){
+			  			min_progress = elem_arr[1]	
+			  		}
+			  	}
+
+			  	data_text_start.innerHTML = min_progress.toLocaleString()
+				data_text_end.innerHTML = max_progress.toLocaleString()
+
+  				// We need to colorize every country based on "numberOfWhatever"
+				// colors should be uniq for every value.
+				// For this purpose we create palette(using min/max series-value)
+				var onlyValues = arr_for_data.map(function(obj){ return obj[1]; });
+				var minValue = Math.min.apply(null, onlyValues);
+				var maxValue = Math.max.apply(null, onlyValues);
+				var averageValue = (maxValue + minValue) / 2;
+
+				// create color palette function
+				// color can be whatever you wish
+				if(random_gradient_arr[random_gradient].length == 3){
+					var paletteScale = d3.scale.linear()
+					.domain([minValue, averageValue, maxValue])
+					.range(random_gradient_arr[random_gradient]); // color
+				}else{
+					var paletteScale = d3.scale.linear()
+					.domain([minValue, maxValue])
+					.range(random_gradient_arr[random_gradient]); // color
+				}
+				
+				// fill dataset in appropriate format
+  				arr_for_data.forEach(function(item){ //
+				  // item example value ["USA", 70]
+				  let iso = item[0];
+				  let value = item[1];
+				  dataset[iso] = { numberOfThings: value, fillColor: paletteScale(value) };
+				});
+				//Удаление карты
+				if(slider_ready){
+					map.innerHTML = "";
+					slider_ready = 0;
+				}			
+
+				new Datamap();
+			}
+
+			// Загружается вся инфа по конкретному индикатору за все года
+			function load_all_data(){
+				let country_id;
+				slider_container.className = 'slider_container_pseudo'
+				let min_num = document.getElementsByClassName('min_num')[0]
+				let max_num = document.getElementsByClassName('max_num')[0]
+				let num_over_slider = document.getElementById('num_over_slider')
+				let max_in_arr;
+				let min_in_arr;
+				let min_max_value_arr = []
+				dict = {}
+				let arr = []
+				let n = 0
+	    		var x = new XMLHttpRequest();
+
+	    		x.open("GET", "http://api.worldbank.org/v2/country/all/indicator/"+indicator+"?per_page=18000&format=json");
+	    		x.send();
+
+	    		x.onload = function() {
+		    		if (x.status != 200) {
+					  	// обработать ошибку
+					  	alert( x.status + ': ' + x.statusText ); // пример вывода: 404: Not Found
+					} else {
+						let r = JSON.parse(x.response)
+						let iso = r[1][0]['countryiso3code']
+						for (let a = 0; a < r[0]['total']; a++) {
+							if(typeof dict[r[1][a]['date']] !== "undefined"){		// Если у словаря есть значение (Если словарь создался), то 
+								if(r[1][a]['value'] !== null){		// Если значение не равно null, то
+									if(dict[r[1][a]['date']] == 'undefined'){
+										dict[r[1][a]['date']] = []
+									}
+									arr.push(dict[r[1][a]['date']])
+									if(!not_country.includes(r[1][a]['country']['id'])){
+										if(n > 2){
+											arr[0].push([r[1][a]['countryiso3code'], r[1][a]['value']])
+			            					dict[r[1][a]['date']] = arr[0]
+										}else{
+											arr.push([r[1][a]['countryiso3code'], r[1][a]['value']])
+			            					dict[r[1][a]['date']] = arr
+										}
+									}
+								}
+							}else{		// Если у словаря нет значения (Если словарь ен создался), то
+								n = 0
+								dict[r[1][a]['date']] = 'undefined'
+							}
+							arr = []
+	   						n++
+						}
+					}
+					
+					for (let i = 1960; i < year+1; i++) {
+						if(dict[i] !== 'undefined' && typeof dict[i] !== "undefined"){
+							if(dict[i][0].length == false){	// Убираем неизвестно откуда появившиеся пустые массивы в начале "значения" у ключа
+								dict[i] = dict[i].slice(1)
+							}						
+							min_max_value_arr.push(i)
+						}
+					}
+
+					console.log('dict done');
+					console.log(dict);
+
+					max_in_arr = min_max_value_arr.slice(-1)
+					min_in_arr = min_max_value_arr.slice(0, 1)
+
+					min_num.innerHTML = min_in_arr
+					max_num.innerHTML = max_in_arr
+					slider.min = min_in_arr
+					slider.max = max_in_arr
+					slider.value = max_in_arr
+					num_over_slider.innerHTML = max_in_arr
+					slider_container.className = 'slider_container'
+				}
+			}
+
+			function random_gradient_button(isdatepicker=0){
+				dataset = {}
+				let data_text_start = document.getElementsByClassName('data_text_start')[0]
+	    		let data_text_end = document.getElementsByClassName('data_text_end')[0]
+				let pre_pandom_gradient = random_gradient
+				if(!isdatepicker){	// Если данные не при загрузке календаря
+					random_gradient = getRandomInt(random_gradient_arr.length)
+					while (random_gradient_arr[random_gradient] == random_gradient_arr[pre_pandom_gradient]) {
+						random_gradient = getRandomInt(random_gradient_arr.length)
+					}
+					set_random_gradient_arr()
+				}
+
+				for (let i = 0; i < arr_for_data.length; i++) {		// Если страна из первого массива есть в списке не отображающихся стран, то она удаляется из 1-го массива
+					for (let ndc of not_displayed_countries) {
+						if(arr_for_data[i][0] == ndc){
+							arr_for_data.splice(i, 1);
+						}
+					}
+				}
+				for(let elem_arr of arr_for_data) {
+			  		if(elem_arr[1] > max_progress){
+			  			max_progress = elem_arr[1]
+			  		}
+			  		if(elem_arr[1] < min_progress){
+			  			min_progress = elem_arr[1]	
+			  		}
+			  	}
+			  	data_text_start.innerHTML = min_progress.toLocaleString()
+			  	data_text_end.innerHTML = max_progress.toLocaleString()
+
+				var onlyValues = arr_for_data.map(function(obj){ return obj[1]; });
+				var minValue = Math.min.apply(null, onlyValues);
+				var maxValue = Math.max.apply(null, onlyValues);
+				var averageValue = (maxValue + minValue) / 2;
+
+				// create color palette function
+				// color can be whatever you wish
+				if(random_gradient_arr[random_gradient].length == 3){
+					var paletteScale = d3.scale.linear()
+					.domain([minValue, averageValue, maxValue])
+					.range(random_gradient_arr[random_gradient]); // color
+				}else{
+					var paletteScale = d3.scale.linear()
+					.domain([minValue, maxValue])
+					.range(random_gradient_arr[random_gradient]); // color
+				}
+				
+				// fill dataset in appropriate format
+  				arr_for_data.forEach(function(item){ //
+				  // item example value ["USA", 70]
+				  let iso = item[0];
+				  let value = item[1];
+				  dataset[iso] = { numberOfThings: value, fillColor: paletteScale(value) };
+				});
+				//Удаление карты
+				map.innerHTML = "";
+
+				new Datamap()
+
+			}
+			// Кнопка "random_category", загружается рандомная категория из списка
+			function random_category(){
+				let elems = document.getElementsByClassName('option_tab')
+				let elems_arr = []
+				for(let elem of elems){
+					elems_arr.push(elem.id)
+				}
+				let random = getRandomInt(elems_arr.length)
+				id = elems_arr[random];
+				click_data()
+			}
+
+			// Смена позиции ползунка (указателя) на прогрес баре
+			function progress_bar_switch(){
+				let progress_bar = document.getElementsByClassName('progress_bar')[0]
+				let start_num = document.getElementsByClassName('data_text_start')[0]
+				let end_num = document.getElementsByClassName('data_text_end')[0]
+				let elem = event.target
+				let numberOfThings = elem.dataset.info
+				if(typeof numberOfThings != "undefined"){
+					progress_bar.style.display = 'block';
+					let obj = JSON.parse(numberOfThings);
+					let num = obj['numberOfThings']
+					progress_bar.style.width = (num - min_progress) / (max_progress - min_progress) * 100 + '%'
+				}else{
+					progress_bar.style.display = 'none';
+				}
+			}
+	    	// Поиск по словам
+	    	function search_for_key(){
+	    		let from_it_unfolds_line = document.getElementsByClassName("from_it_unfolds_line")[0]
+	    		let categories_inner = document.getElementsByClassName("categories_inner")[0]
+	    		let input = document.getElementById("search_input")
+	    		let bg = document.getElementById("bg_for_search_inner_container")
+	    		let container = document.getElementById("search_inner_container")
+	    		let input_arr = input.value.split(' ')	
+	    		for (let space = 0; space < input_arr.length; space++) {	// проверка на пустые значения и пробелы
+	    			if(input_arr[space] == "" || input_arr[space] == " "){
+	    				input_arr.splice(space, 1);
+	    			}
+	    		}
+	    		let not_include = [',', '.', '(', ')']
+	    		//console.log(input_arr);
+	    		data_alphabet_all.sort()
+	    		console.log(data_alphabet_all);
+
+	    		container.innerHTML = "";
+	    		container.style.height = "0px";
+				bg.style.height = "1px";
+				bg.style.paddingTop = '0px';
+				categories_inner.style.height = "728px";
+	    		categories_inner.style.marginTop = "1px";
+	    		for (let i = 0; i < data_alphabet_all.length; i++) {
+	    			let new_a = []
+	    			let b;
+	    			let c = 0;
+	    			let a = data_alphabet_all[i][0].split(' ')	
+
+	    			for (let w = 0; w < a.length; w++) {
+	    				b = a[w].toLowerCase()
+	    				for(let s of not_include){
+	    					if(b.slice(-1) == s){
+	    						b = b.slice(0, -1)
+	    					}
+	    				}
+	    				
+	    				new_a.push(b)
+	    			}
+	    			for(let elem_i of input_arr){			
+	    				if(new_a.includes(elem_i.toLowerCase())){		// Если два элемент есть в массиве, то ++, потом сравнивается 
+	    					c++;
+	    				}
+	    			}
+	    			if(c == input_arr.length){
+	    				categories_inner.style.height = "568px";
+	    				categories_inner.style.marginTop = "4px";
+	    				from_it_unfolds_line.style.display = "none";
+						bg.style.height = "154px";
+						container.style.height = "146px";
+						bg.style.paddingTop = '8px';
+	    				var newDiv = document.createElement('div');
+                        newDiv.innerHTML = data_alphabet_all[i][0];
+                        newDiv.id = data_alphabet_all[i][1];
+                        newDiv.className = 'option_tab'
+                        if(data_alphabet_all[i][1] == 'covid'){		// Если id=='covid', то при клике вызывается функция click_data_covid
+                        	newDiv.addEventListener("click", click_data_covid)
+                        }else{	// Если id взято из Worldbank, то при клике вызывается функция click_data
+                        	newDiv.addEventListener("click", click_data)
+                        }
+
+                        container.appendChild(newDiv);
+	    			}	
+	    		}
+	    		if(input.value == ""){
+                    from_it_unfolds_line.style.display = "block";
+					container.style.height = "0px";
+					bg.style.height = "1px";
+					bg.style.paddingTop = '0px';
+					categories_inner.style.height = "728px";
+	    			categories_inner.style.marginTop = "1px";
+                }
+	    	}
+
+	    	// Функция прокрутки до нужного предложения, которое начинается с буквы, по которой кликнули
+	    	function topscroll(){
+
+	    		let scrollTop = 0
+	    		let parent = event.target.parentElement.nextElementSibling.nextElementSibling
+	    		let elems = parent.children
+	    		for(let elem of elems){
+	    			if(elem.innerHTML[0].toUpperCase() == event.target.innerHTML.toUpperCase()){
+	    				$(parent).scrollTop(scrollTop);
+	    				break;
+	    			}else{
+	    				scrollTop += elem.offsetHeight // Плюсуется полная высота элемента (вместе с отступами и со всем)
+	    			}
+	    		}
+	    	}
+
+	    	// Функция открытия меню, при клике на блок
+	    	function menu(){
+	    		let next;
+	    		let elem = event.target
+	    		let change_css;
+	    		if(elem.className == "category_bg"){
+	    			change_css = elem.firstElementChild
+	    			next = elem.nextElementSibling
+	    		}else if(elem.className == "category_text_block"){
+	    			change_css = elem;
+	    			next = elem.parentElement.parentElement.nextElementSibling;
+	    		}else{
+	    			change_css = elem;
+	    			next = elem.parentElement.nextElementSibling;
+	    		}
+
+
+	    		if(next.style.display == 'block'){
+	    			next.style.display = 'none';
+	    			if(next.previousElementSibling.firstElementChild.className == "div_triangle"){
+	    				next.previousElementSibling.firstElementChild.firstElementChild.className = "triangle_much"
+	    			}else{
+	    				next.previousElementSibling.firstElementChild.className = "triangle_less"
+	    			}
+	    		}else{
+	    			next.style.display = "block";
+	    			if(next.previousElementSibling.firstElementChild.className == "div_triangle"){
+	    				next.previousElementSibling.firstElementChild.firstElementChild.className = "triangle_much_open"
+	    			}else{
+	    				next.previousElementSibling.firstElementChild.className = "triangle_less_open"
+	    			}
+	    			let letters_for_search = next.firstElementChild.children;
+	    			let select_tab = next.firstElementChild.nextElementSibling.nextElementSibling.children
+	    			let click_data_letters = []
+	    			for (let s of select_tab) {
+	    				if(!click_data_letters.includes(s.innerHTML[0].toLowerCase())){
+	    					click_data_letters.push(s.innerHTML[0].toLowerCase())
+	    				}	
+	    			}
+	    			for (let l of letters_for_search) {
+	    				if(!click_data_letters.includes(l.innerHTML.toLowerCase())){
+	    					l.className += " no_letter";
+	    					l.removeEventListener('click', topscroll, false);
+	    				}
+	    			}
+	    		}
+	    	}
+	    	// Берет данные из инпута (календарь)
+    		function datepicker_value(){
+    			dp_v = datepicker.value;
+    			click_data_covid('undefined', 1)
+    		}
+	    	// Загрузка данных для короны
+	    	function click_data_covid(event, history=0){
+	    		let year = date.getFullYear()
+	    		let month = date.getMonth()+1
+	    		let day = date.getDate()
+	    		let previous_day = day - 1
+	    		let disabledDates = [year+'-'+month+'-'+previous_day]		// Даты, которые будут дезактивированы (в нашем случае, это - предыдущий день)
+	    		let canada = 0;
+	    		let ifcanada = 0;
+	    		let australia = 0;
+	    		let ifaustralia = 0;
+	    		let china = 0;
+	    		let ifchina = 0;
+	    		let elem = event.target
+	    		let options_tab = document.getElementsByClassName('option_tab')
+	    		let title_category = document.getElementsByClassName('title_category')[0]
+	    		let title_region = document.getElementsByClassName('title_region')[0]
+	    		let data_text_start = document.getElementsByClassName('data_text_start')[0]
+	    		let data_text_end = document.getElementsByClassName('data_text_end')[0]
+	    		let slider_container = document.getElementById('slider_container')
+	    		let isdatepicker = 0
+	    		datepicker.style.display = 'none';
+	    		slider_container.style.display = "none"
+
+	    		min_progress = 10000000000000;
+	    		max_progress = 0;
+	    		arr_for_data = []
+
+	    		if(history){	// Загрузка даты по предыдущим дням
+	    			isdatepicker = 1
+	    			datepicker.style.display = 'inline-block';
+	    			if(month+'/'+day+'/'+String(year).slice(2) == dp_v){			// Если на календаре выбрали сегодняшнюю дату
+	    				arr_for_data = arr_for_data_copy
+	    			}else{
+						for (let i = 0; i < historical_covid_data.length; i++) {
+							let province = historical_covid_data[i]['province']
+							if(province == 'greenland'){
+		    					arr_for_data.push(['GRL', historical_covid_data[i]['timeline'][title_category.innerHTML.toLowerCase()][dp_v]])
+		    				}else if(province == 'french guiana'){
+		    					arr_for_data.push(['GUF', historical_covid_data[i]['timeline'][title_category.innerHTML.toLowerCase()][dp_v]])
+		    				}
+		    				else if(province == 'new caledonia'){
+		    					arr_for_data.push(['NCL', historical_covid_data[i]['timeline'][title_category.innerHTML.toLowerCase()][dp_v]])
+		    				}else if(province == 'Falkland Islands (Malvinas)'){
+		    					arr_for_data.push(['FLK', historical_covid_data[i]['timeline'][title_category.innerHTML.toLowerCase()][dp_v]])
+		    				}else{
+		    					// Складываем данные из провинций во едино по странам: Канада, Китай, Австралия
+		    					if(historical_covid_data[i]['country'] == 'Canada') {
+		    						ifcanada = 1
+		    						canada += historical_covid_data[i]['timeline'][title_category.innerHTML.toLowerCase()][dp_v]
+
+		    					}else if(ifcanada){			
+		    						ifcanada = 0
+		    						arr_for_data.push([dict_country_iso3_history_previous['Canada'], canada])
+		    					}
+		    					if(historical_covid_data[i]['country'] == 'China') {
+		    						ifchina = 1						
+		    						china += historical_covid_data[i]['timeline'][title_category.innerHTML.toLowerCase()][dp_v]
+		    					}else if(ifchina){
+		    						ifchina = 0
+		    						arr_for_data.push([dict_country_iso3_history_previous['China'], china])
+		    					}
+		    					if(historical_covid_data[i]['country'] == 'Australia') {
+		    						ifaustralia = 1
+		    						australia += historical_covid_data[i]['timeline'][title_category.innerHTML.toLowerCase()][dp_v]
+		    					}else if(ifaustralia){			
+		    						ifaustralia = 0
+		    						arr_for_data.push([dict_country_iso3_history_previous['Australia'], australia])
+		    					}
+
+		    					if(!ifcanada && !ifchina && !ifaustralia){
+		    						arr_for_data.push([dict_country_iso3_history_previous[historical_covid_data[i]['country']], historical_covid_data[i]['timeline'][title_category.innerHTML.toLowerCase()][dp_v]])
+		    					}
+		    					
+		    				}
+		    			}
+		    		}
+	    		}else{		// загрузка данных на сегодняшний день
+		    		for (let o = 0; o < options_tab.length; o++) {		// Убираем выделение у всех элементов, и выделяем элемент, по которому кликнули
+		    			if(options_tab[o].className == "option_tab option_tab_onclick"){
+		    				options_tab[o].className = "option_tab"
+		    			}
+		    		}
+
+		    		elem.className += ' option_tab_onclick';
+		    		map.id = 'map_container_load';		// Изменяем id у карты
+		    		load_circle.style.display = "block"
+
+		    		let indicator = elem.innerHTML.replace(/\s+/g, ''); // Заменяем пробелы в строке на ''
+
+		    		indicator = indicator[0].toLowerCase() + indicator.substring(1)		// Делаем первую букву маленькой
+		    		title_category.innerHTML = elem.innerHTML;							// Выводим название категории
+		    		title_region.innerHTML = elem.parentElement.parentElement.previousElementSibling.children[1].innerHTML	
+
+
+		    		if (indicator == 'cases' || indicator == 'deaths' || indicator == 'recovered') {			    			
+		    			datepicker.style.display = 'inline-block';
+						// Локализация datepicker 
+						$.datepicker.regional['ru'] = {
+							weekHeader: 'Не',
+							dateFormat: 'm/d/y',
+							firstDay: 1,
+							isRTL: false,
+							showMonthAfterYear: false,
+							yearSuffix: ''
+						};
+						$.datepicker.setDefaults($.datepicker.regional['ru']);
+
+						$(function(){
+							$("#datepicker").datepicker({
+								minDate: new Date(2020, 0, 22), // 22 января 2020 года 
+								maxDate: 0, 
+								beforeShowDay: function(date){			// Деактивируем (делаем неактивным) конкретную дату (кнопку)
+							        var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+							        return [ disabledDates.indexOf(string) == -1 ]
+							    }
+						  });
+						});
+						// Конец календаря
+						document.getElementById('datepicker').removeAttribute("disabled"); // Отключаем инпут
+						arr_for_data = JHUCSSE_data_dict[indicator]
+		    		}else{
+		    			for (let i = 0; i < covid_data.length; i++) {
+	    					arr_for_data.push([covid_data[i]['countryInfo']['iso3'], covid_data[i][indicator]])
+	    				}
+		    		}	
+	    			arr_for_data_copy = arr_for_data
+	    		}
+
+	    		random_gradient_button(isdatepicker)		// метод вызова рандом градиента, там же и из него создается карта
+
+	    		/*
+    			for (let i = 0; i < arr_for_data.length; i++) {		// Если страна из первого массива есть в списке не отображающихся стран, то она удаляется из 1-го массива
+					for (let ndc of not_displayed_countries) {
+						if(arr_for_data[i][0] == ndc){
+							arr_for_data.splice(i, 1);
+						}
+					}
+				}
+				console.log(arr_for_data);
+	    		for(let elem_arr of arr_for_data) {
+			  		if(elem_arr[1] > max_progress){
+			  			max_progress = elem_arr[1]
+			  		}
+			  		if(elem_arr[1] < min_progress){
+			  			min_progress = elem_arr[1]	
+			  		}
+		  		}
+
+	    		data_text_start.innerHTML = min_progress.toLocaleString()
+			  	data_text_end.innerHTML = max_progress.toLocaleString()
+			  	//console.log(arr_for_data);
+
+			  	// Datamaps expect data in format:
+				// { "USA": { "fillColor": "#42a844", numberOfWhatever: 75},
+				//   "FRA": { "fillColor": "#8dc386", numberOfWhatever: 43 } }
+				dataset = {};
+
+				// We need to colorize every country based on "numberOfWhatever"
+				// colors should be uniq for every value.
+				// For this purpose we create palette(using min/max series-value)
+				var onlyValues = arr_for_data.map(function(obj){ return obj[1]; });
+				var minValue = Math.min.apply(null, onlyValues);
+				var maxValue = Math.max.apply(null, onlyValues);
+				var averageValue = (maxValue + minValue) / 2;
+
+				// create color palette function
+				// color can be whatever you wish
+				if(random_gradient_arr[random_gradient].length == 3){
+					var paletteScale = d3.scale.linear()
+					.domain([minValue, averageValue, maxValue])
+					.range(random_gradient_arr[random_gradient]); // color
+				}else{
+					var paletteScale = d3.scale.linear()
+					.domain([minValue, maxValue])
+					.range(random_gradient_arr[random_gradient]); // color
+				}
+				// fill dataset in appropriate format
+				arr_for_data.forEach(function(item){ //
+				  // item example value ["USA", 70]
+				  var iso = item[0];
+				  var value = item[1];
+				  dataset[iso] = { numberOfThings: value, fillColor: paletteScale(value) };
+				});
+				//Удаление карты
+				map.innerHTML = "";
+
+				new Datamap();
+				*/
+	    	}
+
+	    	// Загрузка данных из API - World Bank Data
+	    	function click_data(){
+	    		document.getElementById('datepicker').setAttribute("disabled", "true");  // включаем инпут
+	    		let options_tab = document.getElementsByClassName('option_tab')
+	    		let title_category = document.getElementsByClassName('title_category')[0]
+	    		let title_region = document.getElementsByClassName('title_region')[0]
+	    		let num_over_slider = document.getElementById('num_over_slider')
+	    		num_over_slider.style.left = '97.5%'
+	    		datepicker.style.display = 'none';
+	    		slider_container.style.display = 'block';
+
+	    		arr_for_data = []
+
+	    		let elem;
+
+	    		map.id = 'map_container_load';		// Изменяем id у карты
+	    		load_circle.style.display = "block"
+
+	    		for (let o = 0; o < options_tab.length; o++) {		// Убираем выделение у всех элементов, и выделяем элемент, по которому кликнули
+	    			if(options_tab[o].className == "option_tab option_tab_onclick"){
+	    				options_tab[o].className = "option_tab"
+	    			}
+	    		}
+	    		if(id == ""){		// Если кликнули по категории в меню
+	    			elem = event.target;
+	    			indicator = elem.id;
+	    		}else{				// Если нажали кнопку "random category"
+	    			elem = document.getElementById(id);
+	    			indicator = id;
+	    		}
+	    		id = "";
+	    		elem.className += ' option_tab_onclick';
+	    		
+	    		let country_iso_2 = "";
+	    		let country_name = "";
+	    		let count = 0;
+	    		let date = 2019;  // Год 
+	    		min_progress = 10000000000000;
+	    		max_progress = 0;
+	    		let country_id;
+	    		var x = new XMLHttpRequest();
+	    		x.open("GET", "http://api.worldbank.org/v2/country/all/indicator/"+indicator+"?date="+date+"&per_page=300&format=json");
+	    		x.send();
+	    		x.onload = function(){
+		    		if (x.status != 200) {
+					  	// обработать ошибку
+					  	alert( x.status + ': ' + x.statusText ); // пример вывода: 404: Not Found
+					} else {
+						title_region.innerHTML = elem.parentElement.parentElement.previousElementSibling.children[1].innerHTML	
+						title_category.innerHTML = elem.innerHTML;
+						let r = JSON.parse(x.response)						
+						for (var c = 0; c < r[0]['total']; c++) {
+					  		count = 0;
+					  		try{
+						  		if (r[1][c]['value'] == null){		// если значение == null , то пропускаем 1 итерацию цикл
+						  			continue;
+						  		} else {
+					  				if(!not_country.includes(r[1][c]['country']['id'])){
+					  					
+					  					if(r[1][c]['countryiso3code'] == ""){
+					  						country_id = r[1][c]['country']['id']
+					  					}else{
+					  						country_id = r[1][c]['countryiso3code']
+					  					}
+
+
+					  					if(country_id == 'XKX'){
+					  						country_name = '-99';
+					  					}else{
+					  						country_name = country_id
+					  					}					  				
+						  				country_value = r[1][c]['value']
+						  				count = 1;
+					  				}
+					  			}
+					  		} catch(e){
+					  			break;
+					  		}
+					  		if(count){
+					  			arr_for_data.push([country_name, country_value])		// Вставляется в массив стран для DATA имя страны и ее значение
+					  		}		
+					  	}
+
+					  	random_gradient_button()		// метод вызова рандом градиента, там же и из него создается карта
+						load_all_data()
+
+					  	/*
+					  	for (let i = 0; i < arr_for_data.length; i++) {		// Если страна из первого массива есть в списке не отображающихся стран, то она удаляется из 1-го массива
+							for (let ndc of not_displayed_countries) {
+								if(arr_for_data[i][0] == ndc){
+									arr_for_data.splice(i, 1);
+								}
+							}
+						}
+						
+					  	for(let elem_arr of arr_for_data) {
+					  		if(elem_arr[1] > max_progress){
+					  			max_progress = elem_arr[1]
+					  		}
+					  		if(elem_arr[1] < min_progress){
+					  			min_progress = elem_arr[1]	
+					  		}
+					  	}
+					  	data_text_start.innerHTML = min_progress.toLocaleString()
+					  	data_text_end.innerHTML = max_progress.toLocaleString()
+
+					  	
+					  	
+					  	//console.log(arr_for_data);
+
+					  	// Datamaps expect data in format:
+						// { "USA": { "fillColor": "#42a844", numberOfWhatever: 75},
+						//   "FRA": { "fillColor": "#8dc386", numberOfWhatever: 43 } }
+						dataset = {};
+
+						// We need to colorize every country based on "numberOfWhatever"
+						// colors should be uniq for every value.
+						// For this purpose we create palette(using min/max series-value)
+						var onlyValues = arr_for_data.map(function(obj){ return obj[1]; });
+						var minValue = Math.min.apply(null, onlyValues);
+						var maxValue = Math.max.apply(null, onlyValues);
+						var averageValue = (maxValue + minValue) / 2;
+
+						// create color palette function
+						// color can be whatever you wish
+						if(random_gradient_arr[random_gradient].length == 3){
+							var paletteScale = d3.scale.linear()
+							.domain([minValue, averageValue, maxValue])
+							.range(random_gradient_arr[random_gradient]); // color
+						}else{
+							var paletteScale = d3.scale.linear()
+							.domain([minValue, maxValue])
+							.range(random_gradient_arr[random_gradient]); // color
+						}
+						// fill dataset in appropriate format
+						arr_for_data.forEach(function(item){ //
+						  // item example value ["USA", 70]
+						  var iso = item[0];
+						  var value = item[1];
+						  dataset[iso] = { numberOfThings: value, fillColor: paletteScale(value) };
+						});
+						//Удаление карты
+						map.innerHTML = "";
+
+						new Datamap();
+						*/
+					}
+				}
+	    	}
+	    </script>
+	</body>
+</html>
