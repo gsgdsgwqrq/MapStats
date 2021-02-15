@@ -1,0 +1,163 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="intro_inner">
+	<div class="categories">
+		<div class="categories_text">
+				CLASSIFICATION
+		</div>
+		<div class="search_inner">
+			<input type="text" class="search_input" id="search_input" placeholder="Enter keywords for searching" onkeyup="search_for_key()">
+			<div class="search_circle">
+					<img src="{{ url_for('static', filename='css/img/input.png') }}" alt="what are u looking at?" style="margin: 6px;">
+			</div>
+		</div>	
+		<div class="bg_for_search_inner_container" id="bg_for_search_inner_container">
+			<div class="search_inner_container" id="search_inner_container"></div>
+		</div>
+		<div class="categories_inner" id="d">
+			<div class="categories_inner_inner" id='categories_inner_inner'>
+				<!-- Категория "Trending" -->
+				<!-- <div>
+					<div class="category_bg" onclick="menu(event.target)">
+						<div class="triangle_less" style="margin-right: 7px;"></div>
+						<div class="category_text_less" style="width: 70px;">Trending</div>
+						<img src="static/css/img/trending.png" class="trending_logo">
+					</div>
+					<div class="category_main">
+						<div class="letters_for_search">
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">a</a>
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">b</a>
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">c</a>
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">d</a>
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">e</a>
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">f</a>
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">g</a>
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">h</a>
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">i</a>
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">l</a>
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">m</a>
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">n</a>
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">o</a>
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">p</a>
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">r</a>
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">s</a>
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">t</a>
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">u</a>
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">v</a>
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">w</a>
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">y</a>
+						</div>
+						<hr class="under_the_letters_line">
+						<div class="select_tab" id="select_tab_trending" data-id="covid"></div>
+					</div>
+				</div>	 -->
+				<div>
+					<div class="category_bg" onclick="menu(event.target)">
+						<div class="triangle_less" style="margin-right: 7px;"></div>
+						<div class="category_text_less" style="width: 70px;">Covid-19</div>
+						<img src="{{ url_for('static', filename='css/img/trending.png') }}" class="trending_logo">
+					</div>
+					<div class="category_main" style="height: 157px;">
+						<div class="letters_for_search" style="display: none;">
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">a</a>
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">b</a>
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">c</a>
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">d</a>
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">e</a>
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">f</a>
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">g</a>
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">h</a>
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">i</a>
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">l</a>
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">m</a>
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">n</a>
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">o</a>
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">p</a>
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">r</a>
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">s</a>
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">t</a>
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">u</a>
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">v</a>
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">w</a>
+							<a class="search_for_letter" onclick="topscroll(event.target)" style="margin-right: 2px;">y</a>
+						</div>
+						<hr class="under_the_letters_line">
+						<div class="select_tab" id="select_tab_covid"></div>
+					</div>
+				</div>	
+			</div>
+		</div>
+	</div>
+	<div class="map">
+		<div class="map_inner">
+			<div class="title">
+				<div class="title_category">Indicator</div>
+				<div class="container_region"><span class="title_region">Category</span><span class="title_region_span"></span></div>
+			</div>
+			<div class="buttons_container" id='buttons_container'>
+				<img src="{{ url_for('static', filename='css/img/minus.png') }}" class="zoom-button" data-zoom="out" id="zoom_minus">
+				<div class="zoom_info">
+					<div class="zoom_info_text" id="zoom-info"></div>		
+				</div>					
+				<img src="{{ url_for('static', filename='css/img/plus.png') }}" class="zoom-button" data-zoom="in" id="zoom_plus">
+				<img src="{{ url_for('static', filename='css/img/reset.png') }}" class="zoom-button" id="zoom_reset" data-zoom="reset">
+			</div>
+			<div class="loader" id="loader"></div>
+			<!-- <div class="sk-circle" id='sk-circle'>
+			  <div class="sk-circle1 sk-child"></div>
+			  <div class="sk-circle2 sk-child"></div>
+			  <div class="sk-circle3 sk-child"></div>
+			  <div class="sk-circle4 sk-child"></div>
+			  <div class="sk-circle5 sk-child"></div>
+			  <div class="sk-circle6 sk-child"></div>
+			  <div class="sk-circle7 sk-child"></div>
+			  <div class="sk-circle8 sk-child"></div>
+			</div> -->
+			<div id="map_container" onmouseover='progress_bar_switch(event.target)'></div>
+			<input type="text" id="datepicker" class='datepicker' placeholder="Select Date" onchange='datepicker_value()'>
+			<div class="slider_loader" id="slider_loader"></div>
+			<div class="slider_container_pseudo" id='slider_container'>
+				<div class="num_over_slider" id="num_over_slider"></div>
+				<div class="slider_inner">
+				  	<input type="range" min="1960" max="" value="" class="slider" id="slider">
+				</div>	
+				<div class="min_max_nums" id="min_max_nums">
+					<div class="min_num" id="min_num">1960</div>
+					<div class="max_num" id="max_num"></div>	
+				</div>				
+			</div>
+			
+			<div class="container_buttons_for_map">
+				<div class="no_data_container">
+					<div class="no_data_text">No data 0%</div>
+					<div class="no_data"></div>
+				</div>
+				<div class="data_container">
+					<div class="data_text_container">
+						<div class="data_text_start">0.5%</div>
+						<div class="data_text_end">100.000.000%</div>
+					</div>
+					<div class="data" id='data'></div>
+					<div class="progress">
+					  	<div class="progress_bar"></div>
+					</div>
+				</div>
+				<div class="change_colour_container" id='change_colour_container' onclick="random_gradient_button()"> 
+					<div class="change_colour_border"></div>
+					<div class="change_colour_bg" id='change_colour_bg'></div>
+					<img src="{{ url_for('static', filename='css/img/change_colour.png') }}" class="change_colour">
+				</div>
+				<div class="random_category" id="random_category" onclick="random_category()">
+					<div class="random_category_text">random category</div>
+				</div>
+
+				<img src="{{ url_for('static', filename='css/img/dw.png') }}" class="dw" onclick="print_dw()">
+				<img src="{{ url_for('static', filename='css/img/share.png') }}" class="share" onclick="share()">
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

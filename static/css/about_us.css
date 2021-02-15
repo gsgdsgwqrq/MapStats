@@ -1,0 +1,55 @@
+/* Контейнер для содержимого на странице */
+.intro_inner{
+	width: 100%;
+	height: 686px;
+}
+
+/* фраза: ABOUT US*/
+.title_page{
+	color: #fff;
+  	font-family: 'Roboto', sans-serif;
+  	font-size: 57px;
+  	font-weight: 400;
+  	text-transform: uppercase;
+  	display: flex;
+  	justify-content: center;
+  	margin-top: 128px;
+}
+.text1, .text2{
+	color: #EDE6F9;
+  	font-family: 'Roboto', sans-serif;
+  	font-size: 20px;
+  	font-weight: 400;
+  	width: 590px;
+  	margin-left: 647px;
+}
+/* Контейнер для аватарок */
+.avatar_container{
+	width: 1127px;
+    margin-left: 370px;
+    margin-top: 165px;
+	display: flex;
+	justify-content: space-between;
+}
+/* Аватарка */
+.avatar{
+	width: 137px;
+	height: 137px;
+	border-radius: 137px;
+	background-color: #494040;
+}
+.text_avatar_container{
+	width: 1070px;
+	margin-left: 390px;
+	margin-top: 20px;
+	display: flex;
+	justify-content: space-between;
+}
+.text_avatar{
+	color: #EDE6F9;
+  	font-family: 'Roboto', sans-serif;
+  	font-size: 20px;
+  	font-weight: 400;
+  	font-style: italic; /* Наклоненный текст */
+}
+
